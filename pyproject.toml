@@ -1,7 +1,14 @@
 [project]
 name = "ai-agent-hugging-face-course"
 version = "0.1.0"
-description = "Add your description here"
+description = "Hugging Face AI Agent Course"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "dotenv>=0.9.9",
+    "huggingface-hub>=0.33.1",
+    "ipykernel>=6.29.5",
+    "jupyter>=1.1.1",
+    "smolagents[litellm]>=1.19.0",
+    "transformers>=4.53.0",
+]
