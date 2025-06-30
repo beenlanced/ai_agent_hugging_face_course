@@ -6,9 +6,20 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "dotenv>=0.9.9",
+    "duckduckgo-search>=8.0.4",
+    "google-search-results>=2.4.2",
+    "gradio-client>=1.10.4",
     "huggingface-hub>=0.33.1",
     "ipykernel>=6.29.5",
     "jupyter>=1.1.1",
-    "smolagents[litellm]>=1.19.0",
+    "langchain-community>=0.3.26",
+    "markdownify>=1.1.0",
+    "matplotlib>=3.10.3",
+    "numpy>=2.3.1",
+    "openinference-instrumentation-smolagents>=0.1.13",
+    "opentelemetry-exporter-otlp>=1.34.1",
+    "opentelemetry-sdk>=1.34.1",
+    "requests>=2.32.4",
+    "smolagents[litellm,telemetry]>=1.19.0",
     "transformers>=4.53.0",
 ]
