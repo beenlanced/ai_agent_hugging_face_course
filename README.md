@@ -36,8 +36,37 @@ Should see message that `Ollama is running`
 
 - create Hugging Face account
 
-- create a Hugging Face Access token
+  - Create a Hugging Face Access token
+    - go [here](https://huggingface.co/settings/tokens)
+    - Select create new token
 
-  - got [here] (https://huggingface.co/settings/tokens)
-  - Select create new token
-    -
+Create Langfuse account -
+Allows you to perform `Observability` (i.e., traceability) for monitoring and analysis of the Agent with the
+assistance of `SmolagentsInstrumentor` which uses the `OpenTelemetry`(https://opentelemetry.io/) standard for instrumenting agent runs. Helps with inspections and logging.
+
+- create a Langfuse project so that you can create two API tokens
+
+  - go [here](https://us.cloud.langfuse.com)
+  - Create a new project which will allow you to generate
+    - LANGFUSE_PUBLIC_KEY
+    - LANGFUSE_SECRET_KEY
+
+---
+
+tools
+
+`Langfuse` open-source LLM (Large Language Model) engineering platform designed to help develop, monitor, evaluate, and debug AI applications.
+
+`OpenTelemetry` an open-source observability framework to collect, process, and export telemetry data (metrics, logs, and traces)
+
+`smolagents` Agentic Framework to help create Agents, CodeAgents and Tool-Calling specifically,
+
+`LlamaIndex` Agentic Framework to help create Agents,
+
+`LangGraph` Agentic Framework to help create Agents,
+
+`LangChain` to support the creation of agents to use LLM reasoning engines
+
+`LLM` to act as reasoning agents for action determination for agents,
+
+`RAG` - for Agentic RAG creatio to combine autonomous agents with dynamic knowledge retrieval
