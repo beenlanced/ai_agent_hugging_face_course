@@ -64,3 +64,9 @@ tools
 `LlamaIndex` Agentic Framework to help create Agents,
 
 `LangGraph` Agentic Framework to help create Agents,
+
+`LangChain` to support the creation of agents to use LLM reasoning engines
+
+`LLM` to act as reasoning agents for action determination for agents,
+
+`RAG` - for Agentic RAG creatio to combine autonomous agents with dynamic knowledge retrieval
