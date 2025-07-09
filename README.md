@@ -18,9 +18,9 @@ Units 0-3 introduce the concepts of Large Language Models (LLMs), agents, the th
 - `LlamaIndex`
 - `LangGraph`, and
 
-Agentic Retrieval Augmented Generation (RAG). Phew! Yeah, this course has it all.
+`Agentic Retrieval Augmented Generation (RAG)`. Phew! Yeah, this course has it all.
 
-For these units, I constructed multiple Python coded Jupyter notebooks to build and test various agents and Agentic RAG use cases using each of the three previously mentioned Agentic Frameworks.
+For these units, I constructed multiple Python coded Jupyter notebooks to build and test various agents and agentic RAG use cases using each of the three previously mentioned agentic frameworks.
 
 ### My Final Project - Unit 4
 
@@ -57,7 +57,7 @@ Specifially, my final project builds an AI Agent using the Langgraph Agentic Fra
   - **Weather Tool:** For getting real-time weather updates for a given city.
   - **Current Time:** To get the current time in H:MM AM/PM format.
 
-- **Supabase Vector Store (question retrieval):** This component acts as a knowledge base, storing embeddings of previously encountered questions or relevant documents. The agent can query this vector store to find similar questions or retrieve contextual information, aiding in answering new questions. Essentially, adding a Agentic RAG component to the final project
+- **Supabase Vector Store (question retrieval):** This component acts as a knowledge base, storing embeddings of previously encountered questions or relevant documents. The agent can query this vector store to find similar questions or retrieve contextual information, aiding in answering new questions. Essentially, adding an agentic RAG component to the final project.
 
 ### My final Projects Score After Numerous Attempts and Code Tweaks
 
@@ -113,7 +113,7 @@ The project contains the key elements:
 
 ## Getting Started
 
-Here are some instructions to help you set up this project locally.
+Here are some instructions to help you set up this project.
 
 ---
 
@@ -325,7 +325,7 @@ I would like to extend my gratitude to all the individuals and organizations who
 
 Specifically, I would like to acknowledge:
 
-- THe folks at [Hugging Face (HF)](https://huggingface.co/learn/agents-course/unit2/introduction) for putting the course together. It exposes your to numerous frameworks and the final project hightlights the complexity of answering questions that complext AI agents have to go through. Kudos HF team! I learned a lot.
+- THe folks at [Hugging Face (HF)](https://huggingface.co/learn/agents-course/unit2/introduction) for putting the course together. It exposes you to numerous frameworks and the final project hightlights the complexity of answering questions that AI agents have to go address. Kudos HF team! I learned a lot.
 
 - [Hema Kalyan Murapaka](https://www.linkedin.com/in/hemakalyan) and [Benito Martin](https://martindatasol.com/blog) for sharing their README.md templates upon which I have derived my README.md.
 
