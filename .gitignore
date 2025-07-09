@@ -36,6 +36,9 @@ cover/
 instance/
 .webassets-cache
 
+# Gradio
+.gradio/
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
