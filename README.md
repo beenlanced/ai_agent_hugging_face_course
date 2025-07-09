@@ -121,19 +121,20 @@ Here are some instructions to help you set up this project locally.
 
 ### Prerequisites
 
-- The Python version used for this project is `Python 3.12`.
+- The Python version used for this project is `Python 3.12`
 - Hugging Face account (for submission to the leaderboard)
 - Supabase project with a `documents` table and `match_documents` function (for the vector store)
   - Supabase Service Key
   - Supabase URL
-- API keys for Google Gemini or Hugging Face Inference API (depending on your chosen LLM provider)
+- API keys for your chosen LLM provider like Google Gemini or Hugging Face Inference API
+  - I used the free credits on Hugging Face for Units 0-3, then used Ollama downloaded LLM for the final project as you may exhaust your free credits on various platforms.
 - Tavily API key (for web search)
 - Langfuse Public and Secret key
 - Open weather API key
 
 **Note:** Ensure that `system_prompt.txt` is present in the same directory as `agent.py`, as it contains the system prompt for the agent.
 
-### Create a Hugging Face Account
+#### Create a Hugging Face Account
 
 - Login or Sign Up on [Hugging Face](https://huggingface.co/login)
 
@@ -142,7 +143,7 @@ Here are some instructions to help you set up this project locally.
   - go [here](https://huggingface.co/settings/tokens)
   - Select create new token
 
-- If you use the `Hugging Face CLI` (say when running models locally), here are some tips for working with Tokens:
+- If you use the `Hugging Face CLI` (say when running models locally), here are some tips for working with Access Tokens:
 
   1. Using a token saved by huggingface-cli login:
      To remove this token, you can simply use the huggingface-cli logout command.
@@ -154,12 +155,11 @@ Here are some instructions to help you set up this project locally.
      For example, in a Bash shell, you would use the command unset HF_TOKEN.
      In summary:
      If you used huggingface-cli login, use huggingface-cli logout.
-     If you used the HF_TOKEN environment variable, use the appropriate command for your shell to unset the variable (e.g., unset HF_TOKEN in Bash
+     If you used the HF_TOKEN environment variable, use the appropriate command for your shell to unset the variable (e.g., unset HF_TOKEN in Bash)
 
-### Create a Langfuse Account
+#### Create a Langfuse Account
 
-Allows you to perform `Observability` (i.e., traceability) for monitoring and analysis of the Agent with the
-assistance of `SmolagentsInstrumentor` which uses the `OpenTelemetry`(https://opentelemetry.io/) standard for instrumenting agent runs. Helps with inspections and logging.
+Allows you to perform `Observability` (i.e., traceability) for monitoring and analysis of the Agent with the assistance of `SmolagentsInstrumentor` which uses the `OpenTelemetry`(https://opentelemetry.io/) standard for instrumenting agent runs. Helps with inspections and logging.
 
 - Create a Langfuse project so that you can create two API tokens
   - go [here](https://us.cloud.langfuse.com)
@@ -167,7 +167,7 @@ assistance of `SmolagentsInstrumentor` which uses the `OpenTelemetry`(https://op
     - LANGFUSE_PUBLIC_KEY
     - LANGFUSE_SECRET_KEY
 
-### Download Ollama
+#### Download Ollama
 
 Obtain the Ollama Application to run the Ollama Server [here](https://github.com/ollama/ollama?tab=readme-ov-file).
 
@@ -176,15 +176,15 @@ Obtain the Ollama Application to run the Ollama Server [here](https://github.com
 
 Here is an [Ollama Cheatsheet](https://secretdatascientist.com/ollama-cheatsheet/) as well.
 
-- To load the `qwen3` LLM from Ollama once Ollam server is running
+- To load the `qwen3` LLM from Ollama once the Ollama server is running
 
-  - To Pull the `qwen3` model
+  - **Pull** the `qwen3` model
 
   ```bash
   ollama pull qwen3:latest
   ```
 
-### Setting up Supabase Vector Store Database
+#### Setting up Supabase Vector Store Database
 
 - Log In or Sign Up to [Supabase](https://supabase.com/dashboard/sign-in?returnTo=%2Forg)
 
@@ -194,7 +194,7 @@ Here is an [Ollama Cheatsheet](https://secretdatascientist.com/ollama-cheatsheet
 
   - https://discuss.huggingface.co/t/how-to-upload-documents-to-the-supabasevectorstore/161245
 
-### Clone the Repo
+### Get the code -- Clone the Repo
 
 1. Clone the repo (or download it as a zip file):
 
@@ -229,9 +229,9 @@ Here is an [Ollama Cheatsheet](https://secretdatascientist.com/ollama-cheatsheet
    uv pip install -r pyproject.toml
    ```
 
-### Install the Jupyter Notebook(s) to run the EDA notebook
+### Install the Jupyter Notebook(s)
 
-1. **Run the EDA POC**
+1. **Run the Notebooks for each Unit**
 
    - Run the Jupyter Notebook(s) in the Jupyter UI or in VS Code.
 
@@ -244,12 +244,25 @@ Here is an [Ollama Cheatsheet](https://secretdatascientist.com/ollama-cheatsheet
    To run the application and evaluate your agent, execute the `app.py` file:
 
    ```bash
-   python app.py
+   python3 app.py
    ```
 
-   This will launch a Gradio interface in your web browser. Follow the instructions on the Gradio interface:
+   This will launch a Gradio interface in your web browser (see url given after running the command above). Follow the instructions on the Gradio interface:
 
    1. **Log in to Hugging Face:** Use the provided button to log in with your Hugging Face account. Your username will be used for submission to the leaderboard.
+
+   - **Running Locally and not in Hugging Face** If you are like me, and wanted to run your model locally, you will need to open a terminal before the `python3 app.py` step and run the following command:
+
+   ```bash
+   huggingface-cli login
+   ```
+
+   you will be prompted to insert your **HF_TOKEN**
+
+   Log in via this command line will log you into Hugging face for the next steps and help avoide issues during your model evaluation.
+
+   See instructions for using `huggingface-cli logout` earlier once you have completed model evaluation.
+
    2. **Run Evaluation & Submit All Answers:** Click this button to initiate the evaluation process. The application will:
       - Fetch questions from the external API.
       - Run your `BasicAgent` (which utilizes the `LangGraph Agent` and its tools) on each question.
@@ -278,16 +291,6 @@ The primary goal of this project is to achieve a score of 30% or higher on a sub
 
 ---
 
-### Final Words
-
-Thanks for visiting.
-
-Give the project a star (⭐) if you liked it or if it was helpful to you!
-
-You've `beenlanced`! 😉
-
----
-
 ## References
 
 [1] GAIA: A Benchmark for General AI Assistants: [https://arxiv.org/abs/2311.12983](https://arxiv.org/abs/2311.12983)
@@ -306,11 +309,23 @@ You've `beenlanced`! 😉
 
 ---
 
+### Final Words
+
+Thanks for visiting.
+
+Give the project a star (⭐) if you liked it or if it was helpful to you!
+
+You've `beenlanced`! 😉
+
+---
+
 ## Acknowledgements
 
 I would like to extend my gratitude to all the individuals and organizations who helped in the development and success of this project. Your support, whether through contributions, inspiration, or encouragement, have been invaluable. Thank you.
 
 Specifically, I would like to acknowledge:
+
+- THe folks at [Hugging Face (HF)](https://huggingface.co/learn/agents-course/unit2/introduction) for putting the course together. It exposes your to numerous frameworks and the final project hightlights the complexity of answering questions that complext AI agents have to go through. Kudos HF team! I learned a lot.
 
 - [Hema Kalyan Murapaka](https://www.linkedin.com/in/hemakalyan) and [Benito Martin](https://martindatasol.com/blog) for sharing their README.md templates upon which I have derived my README.md.
 
