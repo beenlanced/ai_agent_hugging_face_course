@@ -41,9 +41,9 @@ GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 # Tavily Search API Key
 TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY")
 
-#################
+#####
 # Create Tools 
-#################
+#####
 #-- Arxiv Search
 @tool
 def arvix_search(query: str) -> str:
@@ -111,25 +111,11 @@ def subtract(a: int | float, b: int | float) -> int | float:
     """
     return a - b
 
-# @tool
-# def similar_question_search(query: str) -> str:
-#     """Search the vector database for similar questions and return the first results.
-    
-#     Args:
-#         question: the question human provided."""
-#     similar_docs = vector_store.similarity_search(query, 3)
-#     formatted_search_docs = "\n\n---\n\n".join(
-#         [
-#             f'<Document source="{doc.metadata["source"]}" page="{doc.metadata.get("page", "")}"/>\n{doc.page_content[:1000]}\n</Document>'
-#             for doc in similar_docs
-#         ])
-#     return {"similar_questions": formatted_search_docs}
-
-#-- Weather 
+#-- Weather
 @tool
 def get_weather(city: str) -> dict[str,str]:
     """Get real-time weather updates for a given city
-    
+
     Args:
         city: city query."""
     api_key = OPEN_WEATHER_API_KEY
@@ -147,7 +133,7 @@ weather_tool = Tool(
 @tool
 def wiki_search(query: str) -> str:
     """Search Wikipedia for a query and return maximum 2 results.
-    
+
     Args:
         query: The search query."""
     search_docs = WikipediaLoader(query=query, load_max_docs=2).load()
@@ -161,7 +147,7 @@ def wiki_search(query: str) -> str:
 
 def web_search(query: str) -> str:
     """Search Tavily for a query and return maximum 3 results.
-    
+
     Args:
         query: The search query."""
     search_docs = TavilySearchResults(max_results=3).invoke(query=query)
@@ -172,35 +158,15 @@ def web_search(query: str) -> str:
         ])
     return {"web_results": formatted_search_docs}
 
-#-- Web Search2
-# @tool
-# def web_search2(query: str) -> str:
-#     """Search DuckDuckGoSearchRun for a query and return maximum 3 results.
-    
-#     Args:
-#         query: The search query."""
-#     # wrapper = DuckDuckGoSearchAPIWrapper(max_results=3)
-#     # search_docs = DuckDuckGoSearchResults(api_wrapper=wrapper, output_format="list").invoke(query=query)
-#     search_docs = DDGS().text(query, max_results=5)
-#     formatted_search_docs = "\n\n---\n\n".join(
-#         [
-#             f'<Document source="{doc["title"]}" page="{doc.get("href", "")}"/>\n{doc["body"]}\n</Document>'
-#             for doc in search_docs
-#         ])
-#     return {"web_results": formatted_search_docs}
-
-
 ######
 # Get System Prompt
 #######
-
 # load the system prompt from the file
 with open("system_prompt.txt", "r", encoding="utf-8") as f:
     system_prompt = f.read()
 
 # System message
 sys_msg = SystemMessage(content=system_prompt)
-
 
 ######
 #  Build a Question retriever
@@ -256,7 +222,7 @@ def build_graph(provider: str = "ollama"):
         )
     else:
         raise ValueError("Invalid provider. Choose 'google', 'groq' or 'huggingface'.")
-    
+
     # Bind tools to LLM (i.e., assign tools)
     llm_with_tools = llm.bind_tools(tools)
 
@@ -276,28 +242,6 @@ def build_graph(provider: str = "ollama"):
             answer = content.strip()
         return {"messages": [AIMessage(content=answer)]}
     
-    # def retriever(state: MessagesState):
-    #     """Retriever Node"""
-    #     similar_question = vector_store.similarity_search(state["messages"][0].content)
-    #     example_msg = HumanMessage(
-    #         content=f"Here I provide a similar question and answer for reference: \n\n{similar_question[0].page_content}", 
-    #     )
-    #     return {"messages": [sys_msg] + state["messages"] + [example_msg]}
-
-    # builder = StateGraph(MessagesState)
-    # builder.add_node("retriever", retriever)
-    # builder.add_node("assistant", assistant)
-    # builder.add_node("tools", ToolNode(tools))
-    # builder.add_edge(START, "retriever")
-    # builder.add_edge("retriever", "assistant")
-    # builder.add_conditional_edges(
-    #     "assistant",
-    #     # If the latest message (result) from assistant is a tool call -> tools_condition routes to tools
-    #     # If the latest message (result) from assistant is a not a tool call -> tools_condition routes to END
-    #     tools_condition,
-    # )
-    # builder.add_edge("tools", "assistant")
-
     builder = StateGraph(MessagesState)
     builder.add_node("retriever", retriever)
 

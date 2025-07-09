@@ -22,6 +22,20 @@ huggingface-cli login at the CLI to test locally use your HF TOKEN
 
 https://js.langchain.com/docs/integrations/vectorstores/supabase/
 
+There are two main ways the Hugging Face CLI might be using a token:
+
+1. Using a token saved by huggingface-cli login:
+   To remove this token, you can simply use the huggingface-cli logout command.
+   This command will delete all tokens stored locally on your machine by the CLI.
+   If you want to remove a specific token, you can provide its name as an argument to the logout command.
+2. Using the HF_TOKEN environment variable:
+   If you're logged in using the HF_TOKEN environment variable, the huggingface-cli logout command will not log you out.
+   In this case, you need to unset the environment variable directly in your machine's configuration.
+   For example, in a Bash shell, you would use the command unset HF_TOKEN.
+   In summary:
+   If you used huggingface-cli login, use huggingface-cli logout.
+   If you used the HF_TOKEN environment variable, use the appropriate command for your shell to unset the variable (e.g., unset HF_TOKEN in Bash
+
 #### To upload data to supabase
 
 - https://python.langchain.com/docs/integrations/vectorstores/supabase/0

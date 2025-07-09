@@ -1,7 +1,6 @@
 # Insert data from metadata.jsonl into supabase 
 # Follow guidance from: 
 # - https://python.langchain.com/docs/integrations/vectorstores/supabase/0
-# - https://huggingface.co/spaces/baixianger/RobotPai/blob/main/test.ipynb
 
 from collections import Counter, OrderedDict
 import json
@@ -14,6 +13,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
 from supabase.client import Client, create_client
 
+
 # Load the metadata.jsonl file
 with open("metadata.jsonl", 'r') as jsonl_file:
     json_list = list(jsonl_file)
@@ -23,8 +23,8 @@ for json_str in json_list:
     json_data = json.loads(json_str)
     json_QA.append(json_data)
 
-#Check that I was able to load data and extract everything appropriately
-# randomly select 3 samples
+# Check that I was able to load data and extract everything appropriately
+# randomly select 1 samples
 # random.seed(42)
 random_samples = random.sample(json_QA, 1)
 for sample in random_samples:
@@ -48,7 +48,6 @@ print("=" * 50)
 
 #####
 # Writing out the prompt
-#   Helps me understand what tools I will need to make available to my agent
 #####
 system_prompt = """
 You are a helpful assistant tasked with answering questions using a set of tools.
@@ -99,12 +98,8 @@ supabase: Client = create_client(supabase_url, supabase_key)
 # Set embeddings
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2") #  dim=768
 
-
-
 #####
-#
-# Wrap the metadata.jsonl's questions and answers into a list of document
-#
+# Wrap the metadata.jsonl's questions and answers into a list of documents
 #####
 
 # docs = []
@@ -119,7 +114,7 @@ embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-b
 #     }
 #     docs.append(doc)
 
-# Upload the documents to the vector database - Commented out as I have previously done this step
+# Upload the documents to the supabase vector database - Commented out as I have previously done this step
 # try:
 #     response = (
 #         supabase.table("documents")
@@ -129,15 +124,8 @@ embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-b
 # except Exception as exception:
 #     print("Error inserting data into Supabase:", exception)
 
-# ALTERNATIVE : Save the documents (a list of dict) into a csv file, and manually upload it to Supabase
-# import pandas as pd
-# df = pd.DataFrame(docs)
-# df.to_csv('supabase_docs.csv', index=False)
-
 #########
-# 
 # Verfiy that I can extract data from supabase table: documents
-#
 ########
 
 vector_store = SupabaseVectorStore(
