@@ -8,21 +8,31 @@
 
 ## Project Description
 
-This repo represents the collection of notebooks and related code needed to complete the four unit [Hugging Face Agent Course](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit0/time-to-onboard.jpg). The course is designed to evaluate the participant's ability to build and deploy an AI agent capable of answering complex, real-world questions. The course culminates in a final project: The creation of an AI Agent that utilizes multiple tools to answer the real-world questions. The agent's performance is benchmarked against a subset of the [GAIA (General AI Assistant)](https://huggingface.co/papers/2311.12983) benchmark, with a target score of 30% or higher for course completion.
+This repo represents the collection of notebooks and related code needed to complete the four unit [Hugging Face Agent Course](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit0/time-to-onboard.jpg). The course is designed to evaluate the participant's ability to build and deploy an AI agent capable of answering complex, real-world questions. The course culminates in a final project: the creation of an AI Agent that utilizes multiple tools to answer real-world questions. The agent's performance is benchmarked against a subset of the [GAIA (General AI Assistant)](https://huggingface.co/papers/2311.12983) benchmark, with a target score of 30% or higher for course completion.
 
 ### Units 0 - 3
 
-I constructed multiple Python coded Jupyter notebooks to complete each of the course's Units 0 - 3.
+Units 0-3 introduce the concepts of Large Language Models (LLMs), agents, the three Agentic Frameworks implemented in the course:
+
+- `Smolagents`
+- `LlamaIndex`
+- `LangGraph`, and
+
+Agentic Retrieval Augmented Generation (RAG). Phew! Yeah, this course has it all.
+
+For these units, I constructed multiple Python coded Jupyter notebooks to build and test various agents and Agentic RAG use cases using each of the three previously mentioned Agentic Frameworks.
 
 ### My Final Project - Unit 4
 
-The GAIA benchmark, introduced in the paper "GAIA: A Benchmark for General AI Assistants," features 466 challenging questions that require multi-step reasoning, multimodal understanding, web browsing, and proficient tool use. These questions are conceptually simple for humans but prove difficult for current AI systems, highlighting the limitations of standalone Large Language Models (LLMs) and emphasizing the need for agent-based systems.
+The GAIA benchmark, introduced in the paper _"GAIA: A Benchmark for General AI Assistants,"_ features 466 challenging questions that require multi-step reasoning, multimodal understanding, web browsing, and proficient tool use. These questions are conceptually simple for humans, but prove difficult for current AI systems, highlighting the limitations of standalone LLMs and emphasizing the need for agent-based systems.
 
-The project involves interacting with a provided API to fetch questions and submit answers for scoring. The API exposes several routes, including `/questions` to retrieve the full list of evaluation questions, `/random-question` for a single question, `/files/{task_id}` to download associated files, and `/submit` to submit agent answers and update the leaderboard. The submission process requires a Hugging Face username, a link to the agent's code, and a list of answers for each `task_id`.
+The project involves interacting with a provided API to fetch questions and submit answers for scoring. The API exposes several routes, including `/questions` to retrieve the full list of evaluation questions, `/random-question` for a single question, `/files/{task_id}` to download associated files, and `/submit` to submit agent answers and update the leaderboard. The submission process requires a `Hugging Face username`, a link to the agent's code, and a list of answers for each `task_id`.
 
-The provided codebase serves as a basic template, which participants are encouraged to modify and enhance to develop a more robust and effective agent. The evaluation is based on an exact match comparison of the submitted answers to the ground truth.
+Hugging Face provides a codebase that served as a basic template, which participants are encouraged to modify and enhance to develop a more robust and effective agent. The evaluation is based on an exact match comparison of the submitted answers to the ground truth.
 
-Specifially, my final project builds an AI Agent using a Langgraph Agentic Framework, using an Ollama Large Language Model (LLM): `qwen3` that I can run locally.
+You are free to use whichever tools and Agentic framework that you would like.
+
+Specifially, my final project builds an AI Agent using the Langgraph Agentic Framework, an Ollama LLM: `qwen3` that I run locally. Albeit it slow, running locally helped me to avoid exhausting credits on platforms like Google Gemini, OpenAI, and HuggingFace keeping the expenses for the course at extremely low -- $0.00 USD. Additionally, I added an Agentic RAG component to the project using a vector database to store contextual documents.
 
 #### The Final Project's Key Components:
 
@@ -30,7 +40,7 @@ Specifially, my final project builds an AI Agent using a Langgraph Agentic Frame
 
 - **BasicAgent (Python application):** This component acts as the main application orchestrator. It handles user authentication (Hugging Face login), fetches questions from the external API, instantiates and runs the LangGraph Agent, and submits the agent's answers back to the external API for scoring.
 
-- **Embeddings model:** The sentence-transformers/all-mpnet-base-v2 from `HuggingFaceEmbeddings`.
+- **Embeddings model:** The **sentence-transformers/all-mpnet-base-v2** from `HuggingFaceEmbeddings`.
 
 - **Reasoning Component LLM:** The `qwen3` model from `Ollama`.
 
@@ -47,7 +57,7 @@ Specifially, my final project builds an AI Agent using a Langgraph Agentic Frame
   - **Weather Tool:** For getting real-time weather updates for a given city.
   - **Current Time:** To get the current time in H:MM AM/PM format.
 
-- **Supabase Vector Store (question retrieval):** This component acts as a knowledge base, storing embeddings of previously encountered questions or relevant documents. The agent can query this vector store to find similar questions or retrieve contextual information, aiding in answering new questions.
+- **Supabase Vector Store (question retrieval):** This component acts as a knowledge base, storing embeddings of previously encountered questions or relevant documents. The agent can query this vector store to find similar questions or retrieve contextual information, aiding in answering new questions. Essentially, adding a Agentic RAG component to the final project
 
 ### My final Projects Score After Numerous Attempts and Code Tweaks
 
@@ -61,40 +71,43 @@ Specifially, my final project builds an AI Agent using a Langgraph Agentic Frame
 
 The project contains the key elements:
 
-- `ChatOllama` instantiates chatbot like feature,
-- `Deep Learning` for neural network building,
+- `ChatOllama` instantiates chatbot like feature for my LLM,
 - `Embedding Model` using the sentence-transformers/all-mpnet-base-v2 to embedd question answer text,
-- `FAISS` open source vector embedding database making it easy to build LLM apps
-- `Faiss-cpu` CPU only version of Facebook AI Similarity Search used for similarity search and clustering of dense vectors,
 - `Git` (version control),
 - `Gradio` Python web framework to deploy the app on a local web server,
 - `Hugging Face` using LLM models stored here,
 - `Jupyter` python coded notebooks,
 - `LangChain` to simplify the creation of applications using chaining process with LLMs,
+- `Langfuse` the open-source LLM engineering platform designed to help develop, monitor, evaluate, and debug AI applications,
 - `Langgraph` the Agentic Framework to help create Agents,
-- `Langfuse` the open-source LLM engineering platform designed to help develop, monitor, evaluate, and debug AI applications.,
+- `LlamaIndex` the Agentic Framework to help create Agents,
 - `Natural Language Processing (NLP)` to understand, interpret, and manipulate text,
 - `OpenTelemetry` an open-source observability framework to collect, process, and export telemetry data (metrics, logs, and traces),
 - `Prompt Engineering` to provide instructions for the LLM on how to retrieve information,
 - `Python` the standard modules,
 - `qwen3` the Ollama reasoning compoent LLM,
 - `Retrieval Augmented Generation (RAG)` connect the LLM with external data sources,
-- `smolagents` Agentic Framework to help create Agents, CodeAgents and Tool-Calling specifically,
-- `Transfer Learning`, to adapt weights and biases to learn on new data for a pre-existing highly built model, and
+- `smolagents` Agentic Framework to help create Agents, CodeAgents, and Tool-Calling specifically, and
 - `uv` package management including use of `ruff` for linting and formatting.
 
 ---
 
 ## Tech Stack
 
+![DuckDuckGo](https://img.shields.io/badge/duckduckgo-de5833?style=for-the-badge&logo=duckduckgo&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?logo=huggingface&logoColor=000)
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 ![Langchain](https://img.shields.io/badge/langchain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+![Ollama](https://img.shields.io/badge/Ollama-fff?logo=ollama&logoColor=000)
+![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-FFFFFF?&style=for-the-badge&logo=opentelemetry&logoColor=black)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Wikipedia](https://img.shields.io/badge/Wikipedia-%23000000.svg?style=for-the-badge&logo=wikipedia&logoColor=white)
 
 ---
 
